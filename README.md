@@ -1,15 +1,15 @@
 # Cloud Computing – Lab 04: Edge Routing and API Gateways
-**Master in Computer Engineering - Mobile Computing (2026)**
+**Master in Computer Engineering – Mobile Computing (2025/2026)**
 
-**Date:** [Insert Date]  
+**Date:** 17th March 2026 
 **Objective:** In this lab, you are acting as a Platform Engineer. The software development team has provided you with the source code for a new microservice architecture. Your mission is to containerize the applications, orchestrate them alongside a database, and secure the entire ecosystem behind an **API Gateway** using public wildcard domains (`*.meicm.pt`).
 
-**Prerequisites:** Visual Studio Code, Docker CLI, and the provided `lab04-source.zip` file.
+**Prerequisites:** Visual Studio Code, Docker CLI, and this repository's source code.
 
 ---
 
 ### Phase 1: Environment Setup & Architecture Review
-The development team has provided you with `lab04-source.zip`. Extract it to your workspace. 
+The development team has provided you with this repository. Clone it to your workspace. 
 
 You should see two directories:
 1. `/frontend`: Contains a static `index.html` dashboard.
@@ -23,24 +23,24 @@ You should see two directories:
 
 ---
 
-### Phase 2: The Containerization Challenge (30 mins)
-Your first task is to autonomously write the OCI-compliant `Dockerfile`s for the provided source code.
+### Phase 2: The Containerization Challenge
+Your first task is to write the `Dockerfile`s for the provided source code.
 
 **Task 2.1: The Frontend Container**
 Inside the `/frontend` directory, create a `Dockerfile` that uses an `nginx:alpine` base image to serve the `index.html` file.
 
 **Task 2.2: The API Container**
-Inside the `/api` directory, create a highly optimized, **Multi-Stage `Dockerfile`** for the Node.js application. 
+Inside the `/api` directory, create an optimized **Multi-Stage `Dockerfile`** for the Node.js application. 
 * *Requirement 1:* Utilize Layer Caching for the `package.json` dependencies.
 * *Requirement 2:* Use `node:18-alpine` for both the build and production stages.
 * *Requirement 3:* The production container must run as the non-root `node` user.
 
 ---
 
-### Phase 3: The Network & Orchestration Challenge (40 mins)
+### Phase 3: The Network & Orchestration Challenge
 Now that your containers can be built, you must orchestrate the ecosystem and design the network topology. 
 
-Create a `docker-compose.yml` file in the root directory. You must define **four** services: your frontend, your API, your Redis cache, and an API Gateway (we recommend using the `jc21/nginx-proxy-manager:latest` image).
+Create a `docker-compose.yml` file in the root directory. You must define **four** services: your frontend, your API, your Redis cache, and an API Gateway (using the `jc21/nginx-proxy-manager:latest` image).
 
 **Focus on Docker Networking:**
 In a Compose environment, Docker automatically creates a custom bridge network for your stack. This provides internal DNS resolution. 
@@ -48,6 +48,6 @@ In a Compose environment, Docker automatically creates a custom bridge network f
 * To route traffic to the API or Frontend, the Gateway must use the exact **service names** you define in this YAML file. 
 * Ensure your database uses a Docker Volume to persist data across restarts.
 
-Once your YAML file is complete, boot the architecture in the background:
+Once your YAML file is complete, boot the architecture in dettached mode:
 ```bash
 docker compose up -d --build
