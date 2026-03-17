@@ -1,7 +1,8 @@
 # Cloud Computing – Lab 04: Edge Routing and API Gateways
 **Master in Computer Engineering – Mobile Computing (2025/2026)**
 
-**Date:** 17th March 2026 
+**Date:** 17th March 2026
+
 **Objective:** In this lab, you are acting as a Platform Engineer. The software development team has provided you with the source code for a new microservice architecture. Your mission is to containerize the applications, orchestrate them alongside a database, and secure the entire ecosystem behind an **API Gateway** using public wildcard domains (`*.meicm.pt`).
 
 **Prerequisites:** Visual Studio Code, Docker CLI, and this repository's source code.
