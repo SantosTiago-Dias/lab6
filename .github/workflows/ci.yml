@@ -11,26 +11,25 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     
     - uses: docker/login-action@v3
       with:
         registry: ghcr.io
-        username: ${{vars.NOME}}
+        username: SantosTiago-Dias
         password: ${{secrets.PASSWORD}}
     
     - uses: docker/build-push-action@v4
       with:
         context: ./api
         push: true
-        tags: ghrc.io/${{ vars.NOME }}/cloud-api:latest
+        tags: ghrc.io/SantosTiago-Dias/cloud-api:latest
 
     - uses: docker/build-push-action@v4
       with:
         context: ./frontend
         push: true
-        tags: ghrc.io/${{ vars.NOME }}/cloud-frontend:latest
+        tags: ghrc.io/SantosTiago-Dias/cloud-frontend:latest
 
       
