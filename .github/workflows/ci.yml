@@ -14,5 +14,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker compose up -d --build
+    
+    - uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{secrets.PASSWORD}}
+    
+    - uses: docker/build-push-action@v4
+      with:
+        context: ./api
+        push: true
+        tags: ghrc.io/${{ github.actor }}/cloud-api:latest
+
+    - uses: docker/build-push-action@v4
+      with:
+        context: ./frontend
+        push: true
+        tags: ghrc.io/${{ github.actor }}/cloud-frontend:latest
+
+      
