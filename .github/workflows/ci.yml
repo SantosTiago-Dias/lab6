@@ -28,13 +28,14 @@ jobs:
     
     - uses: docker/build-push-action@v4
       with:
-        platforms: linux/amd64 linux/arm64
+        platforms: linux/amd64, linux/arm64
         context: ./api
         push: true
         tags: ghrc.io/santostiago-dias/cloud-api:latest
 
     - uses: docker/build-push-action@v4
       with:
+        platforms: linux/amd64, linux/arm64
         context: ./frontend
         push: true
         tags: ghrc.io/santostiago-dias/cloud-frontend:latest
