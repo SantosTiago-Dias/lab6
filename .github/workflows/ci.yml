@@ -18,19 +18,19 @@ jobs:
     - uses: docker/login-action@v3
       with:
         registry: ghcr.io
-        username: ${{ github.actor }}
+        username: ${{vars.NOME}}
         password: ${{secrets.PASSWORD}}
     
     - uses: docker/build-push-action@v4
       with:
         context: ./api
         push: true
-        tags: ghrc.io/${{ github.actor }}/cloud-api:latest
+        tags: ghrc.io/${{ vars.NOME }}/cloud-api:latest
 
     - uses: docker/build-push-action@v4
       with:
         context: ./frontend
         push: true
-        tags: ghrc.io/${{ github.actor }}/cloud-frontend:latest
+        tags: ghrc.io/${{ vars.NOME }}/cloud-frontend:latest
 
       
